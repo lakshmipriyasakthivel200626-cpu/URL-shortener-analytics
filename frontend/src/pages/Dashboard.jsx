@@ -217,6 +217,8 @@ const Dashboard = () => {
           {/* Left Column: URLs List (Span 5) */}
           <div className="lg:col-span-5 flex flex-col space-y-4">
             <div className="flex items-center justify-between">
+
+
               <h3 className="font-bold text-lg text-slate-300">My Links ({urls.length})</h3>
               <button
                 onClick={fetchUrls}
@@ -303,6 +305,17 @@ const Dashboard = () => {
                               </span>
                             )}
                           </div>
+
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(u.shortUrl, "_blank");
+                            }}
+                            className="p-1.5 hover:text-white hover:bg-slate-800 rounded-lg transition-smooth cursor-pointer"
+                            title="Open Link"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                          </button>
 
                           {/* QR BUTTON */}
                           <button
