@@ -1,170 +1,71 @@
-# 🔗 URL Shortener with Analytics (Full Stack)
+# URL Shortener with Analytics
 
-## 📌 Project Overview
+A full-stack URL Shortener application built using React, Node.js, Express.js, and MongoDB.
 
-This is a full-stack URL Shortener application that allows users to generate short URLs and track real-time analytics such as click count, visit history, and user activity. The application is built using modern web technologies with a clean architecture and user-friendly interface.
+## Features
 
----
+- User Registration & Login
+- JWT Authentication
+- URL Shortening
+- Analytics Dashboard
+- Click Tracking
+- Copy Short URL
+- Delete URL
+- Responsive UI
 
-## 🚀 Features
+## Tech Stack
 
-### 🔐 Authentication
+### Frontend
+- React.js
+- Vite
+- Tailwind CSS
 
-* User Registration & Login
-* Secure password hashing using bcrypt
-* JWT-based authentication
-* Protected routes for authorized users
+### Backend
+- Node.js
+- Express.js
 
----
+### Database
+- MongoDB
 
-### 🔗 URL Shortening
+### Authentication
+- JWT
+- bcryptjs
 
-* Convert long URLs into short links
-* Custom alias support
-* Unique short URL generation
-* Automatic redirection to original URL
+## Installation
 
----
+### Backend
 
-### 📊 Dashboard
-
-* View all created URLs
-* Displays:
-
-  * Original URL
-  * Short URL
-  * Created Date
-  * Click Count
-* Copy to clipboard feature
-* Delete URL functionality
-
----
-
-### 📈 Analytics
-
-* Track total clicks per URL
-* Store visit history with timestamps
-* Monitor user activity
-* Analyze link performance
-
----
-
-## ⭐ Advanced Features
-
-* Device/User-Agent tracking
-* Clean and responsive UI
-* Protected dashboard access
-* Modular backend architecture
-
----
-
-## 🛠️ Tech Stack
-
-### 💻 Frontend
-
-* React.js (Vite)
-* Tailwind CSS
-
-### ⚙️ Backend
-
-* Node.js
-* Express.js
-
-### 🗄️ Database
-
-* MongoDB (Mongoose)
-
-### 🔐 Authentication
-
-* JSON Web Token (JWT)
-* bcryptjs
-
----
-
-## 📂 Project Structure
-
-```id="l8f3rm"
-url-shortener-analytics/
-│
-├── backend/
-│   ├── config/
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   └── urlController.js
-│   ├── middleware/
-│   │   └── authMiddleware.js
-│   ├── models/
-│   │   ├── User.js
-│   │   ├── Url.js
-│   │   └── Visit.js
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   └── urlRoutes.js
-│   └── server.js
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── context/
-│   │   └── App.jsx
-│   └── index.html
-```
-
----
-
-## ⚙️ Installation & Setup
-
-### 🔹 Clone Repository
-
-```id="c3tq7j"
-git clone https://github.com/your-username/url-shortener-analytics.git
-cd url-shortener-analytics
-```
-
----
-
-### 🔹 Backend Setup
-
-```id="a9w5nr"
+```bash
 cd backend
 npm install
 npm run dev
 ```
 
----
+### Frontend
 
-### 🔹 Frontend Setup
-
-```id="m2j8lp"
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
----
+## Environment Variables
 
-## 🌐 Environment Variables
+Create a `.env` file inside the backend folder:
 
-Create a `.env` file in the backend folder:
-
-```id="zq0f94"
+```env
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_secret_key
-BASE_URL=http://localhost:5000
 ```
 
+## Project Structure
 
-## 🧠 Key Learnings
+```text
+url-shortener-analytics/
+├── backend/
+├── frontend/
+```
 
-* Full-stack application architecture
-* JWT authentication and security
-* REST API design
-* MongoDB schema design
-* State management in React
+## Author
 
----
-
-## 📌 Hackathon Note
-
-This project is a part of a hackathon run by https://katomaran.com
+Lakshmi Priya S
