@@ -1,44 +1,44 @@
-# URL Shortener with Analytics
+# 🔗 URL Shortener with Analytics
 
-A full-stack URL Shortener application built using React, Node.js, Express.js, and MongoDB.
+A full-stack URL Shortener web application built using **React, Node.js, Express, and MongoDB**.
 
-## Features
+---
 
-- User Registration & Login
-- JWT Authentication
-- URL Shortening
-- Analytics Dashboard
-- Click Tracking
-- Copy Short URL
-- Delete URL
-- Responsive UI
+## 🚀 Features
 
-## Tech Stack
+* 🔗 URL Shortening (Auto & Custom Alias)
+* ⏳ Expiry Date for Links
+* 📊 Analytics Dashboard
+* 📱 Device, Browser, OS Tracking
+* 📈 Click Trends (Last 7 Days)
+* 🔐 JWT Authentication
 
-### Frontend
-- React.js
-- Vite
-- Tailwind CSS
+---
 
-### Backend
-- Node.js
-- Express.js
+## 🛠️ Tech Stack
 
-### Database
-- MongoDB
+* Frontend: React.js, Tailwind CSS
+* Backend: Node.js, Express.js
+* Database: MongoDB
+* Auth: JWT
 
-### Authentication
-- JWT
-- bcryptjs
+---
 
-## Installation
+## ⚙️ Setup Instructions
+
+### Clone repo
+
+```bash
+git clone https://github.com/your-username/url-shortener.git
+cd url-shortener
+```
 
 ### Backend
 
 ```bash
 cd backend
 npm install
-npm run dev
+npm start
 ```
 
 ### Frontend
@@ -49,23 +49,67 @@ npm install
 npm run dev
 ```
 
-## Environment Variables
+---
 
-Create a `.env` file inside the backend folder:
+## 🧠 Assumptions Made
 
-```env
-MONGO_URI=your_mongodb_uri
-JWT_SECRET=your_secret_key
-```
+* User must login to create/manage URLs
+* Short codes are unique
+* Expired links cannot be accessed
+* Analytics stored separately for scalability
 
-## Project Structure
+---
 
-```text
-url-shortener-analytics/
-├── backend/
-├── frontend/
-```
+## 🤖 AI Planning & Architecture
 
-## Author
+### System Design Approach
 
-Lakshmi Priya S
+* Used **MVC pattern (Model-View-Controller)**
+* Separated analytics into a **Visit collection**
+* Used **REST APIs for communication**
+* Implemented **JWT-based authentication**
+
+---
+
+## 🏗️ Architecture Diagram
+
+![System Architecture](./architecture.png)
+
+---
+
+## 🔍 Architecture Explanation
+
+* **Frontend (React)** handles UI and API calls
+* **Backend (Express)** processes requests
+* **Controllers** handle business logic
+* **MongoDB** stores URLs, Users, Visits
+* **Redirect Flow** tracks clicks and analytics
+
+---
+
+## 🎥 Demo Video
+
+👉 Add your Loom / YouTube link:
+https://your-video-link.com
+
+---
+
+## 🌐 Live Demo
+
+👉 Add your deployed link:
+https://your-live-demo.com
+
+---
+
+## 🚀 Future Enhancements
+
+* QR Code Generator
+* Public Analytics Page
+* Bulk CSV Upload
+* Geo-location Tracking
+
+---
+
+## 📢 Hackathon Note
+
+This project is a part of a hackathon run by https://katomaran.com
