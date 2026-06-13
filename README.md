@@ -79,15 +79,17 @@ npm run dev
 
 ## 🔍 Architecture Explanation
 
+
 * **Frontend (React)** handles UI and API calls
 * **Backend (Express)** processes requests
 * **Controllers** handle business logic
 * **MongoDB** stores URLs, Users, Visits
 * **Redirect Flow** tracks clicks and analytics
 
+
 ---
 
-## 🎥 Demo Video
+## 🎥 Demonstration  Video
 
 👉  YouTube link:
 
