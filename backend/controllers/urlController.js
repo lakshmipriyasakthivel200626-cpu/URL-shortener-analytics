@@ -39,31 +39,19 @@ const parseVisitorSpecs = (uaString) => {
 // 🔥 SHORTEN URL
 const shortenUrl = async (req, res) => {
   try {
-    let { originalUrl } = req.body;
+    const { originalUrl, customAlias, expiry } = req.body;
 
     if (!originalUrl) {
-      return res.status(400).json({ message: 'URL required' });
+      return res.status(400).json({ message: "URL required" });
     }
 
-    originalUrl = originalUrl.trim();
-
-    if (!/^https?:\/\//i.test(originalUrl)) {
-      originalUrl = 'http://' + originalUrl;
+    let expiryDate = null;
+    if (expiry) {
+      expiryDate = new Date(expiry);
     }
 
-    try {
-      new URL(originalUrl);
-    } catch {
-      return res.status(400).json({ message: 'Invalid URL' });
-    }
-
-    let shortCode;
-    let exists;
-
-    do {
-      shortCode = generateShortCode();
-      exists = await Url.findOne({ shortCode });
-    } while (exists);
+    // 🔹 Generate short code
+    let shortCode = customAlias || Math.random().toString(36).substring(2, 8);
 
     const baseUrl = `${req.protocol}://${req.get('host')}`;
     const shortUrl = `${baseUrl}/${shortCode}`;
@@ -72,17 +60,17 @@ const shortenUrl = async (req, res) => {
       originalUrl,
       shortCode,
       shortUrl,
-      userId: req.user._id
+      userId: req.user._id,
+      expiryDate   // ✅ now safe
     });
 
     res.status(201).json(newUrl);
 
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: "Server error" });
   }
 };
-
 
 // 🔥 GET USER URLS (NO CLICK CHANGE)
 const getUserUrls = async (req, res) => {
@@ -120,6 +108,7 @@ const deleteUrl = async (req, res) => {
 
 
 // 🔥 🔥 MAIN FIX: REDIRECT ONLY HERE INCREASES CLICKS
+
 const redirectUrl = async (req, res) => {
   try {
     const { code } = req.params;
@@ -128,6 +117,9 @@ const redirectUrl = async (req, res) => {
 
     if (!url) {
       return res.status(404).send("Link not found");
+    }
+    if (url.expiryDate && new Date() > url.expiryDate) {
+      return res.status(410).send("This link has expired");
     }
 
     // ✅ ONLY PLACE WHERE CLICKS INCREASE

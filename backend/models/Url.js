@@ -6,25 +6,36 @@ const UrlSchema = new mongoose.Schema({
     required: [true, 'Please provide the original URL'],
     trim: true
   },
+
   shortCode: {
     type: String,
     required: true,
     unique: true,
     trim: true
   },
+
   shortUrl: {
     type: String,
     required: true
   },
+
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
+
   clicks: {
     type: Number,
     default: 0
   },
+
+  // 🔥 ADD THIS (EXPIRY FEATURE)
+  expiryDate: {
+    type: Date,
+    default: null
+  },
+
   createdAt: {
     type: Date,
     default: Date.now

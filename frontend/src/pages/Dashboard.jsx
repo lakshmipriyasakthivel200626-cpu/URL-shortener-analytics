@@ -32,6 +32,9 @@ import {
 const Dashboard = () => {
   const { API_URL } = useAuth();
 
+  const [originalUrl, setOriginalUrl] = useState("");
+  const [customAlias, setCustomAlias] = useState("");
+  const [expiry, setExpiry] = useState("");
   // URL management states
   const [urls, setUrls] = useState([]);
   const [longUrl, setLongUrl] = useState('');
@@ -75,7 +78,11 @@ const Dashboard = () => {
     setShortening(true);
 
     try {
-      const res = await axios.post(`${API_URL}/urls/shorten`, { originalUrl: longUrl });
+      const res = await axios.post(`${API_URL}/urls/shorten`, {
+        originalUrl: longUrl,
+        customAlias: customAlias,
+        expiry: expiry
+      });
       setUrls((prev) => [res.data, ...prev]);
       setLongUrl('');
       handleSelectUrl(res.data); // select the newly created URL
@@ -177,30 +184,48 @@ const Dashboard = () => {
           <p className="text-slate-400 text-sm mb-6">Enter a long, messy link below to generate a sleek, trackable shortcut.</p>
 
           <form onSubmit={handleShorten} className="flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-grow">
+
+            {/* URL INPUT */}
+            <input
+              type="text"
+              placeholder="Paste your long URL here..."
+              value={longUrl}
+              onChange={(e) => setLongUrl(e.target.value)}
+              className="w-full bg-slate-900 border border-white/10 rounded-xl py-3 px-4 text-sm"
+            />
+
+            {/* ALIAS INPUT */}
+            <input
+              type="text"
+              placeholder="Custom alias (optional)"
+              value={customAlias}
+              onChange={(e) => setCustomAlias(e.target.value)}
+              className="w-full bg-slate-900 border border-white/10 rounded-xl py-3 px-4 text-sm"
+            />
+
+            {/* EXPIRY INPUT */}
+            <div className="flex flex-col w-full">
+              <label className="text-xs text-slate-400 mb-1">
+                Expiry Date & Time
+              </label>
+
               <input
-                type="text"
-                required
-                placeholder="Paste your long URL here... (e.g. github.com/google/deepmind)"
-                className="w-full bg-slate-900 border border-white/10 rounded-xl py-4 pl-4 pr-12 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-accentBlue focus:ring-1 focus:ring-accentBlue transition-smooth text-sm"
-                value={longUrl}
-                onChange={(e) => setLongUrl(e.target.value)}
+                type="datetime-local"
+                value={expiry}
+                onChange={(e) => setExpiry(e.target.value)}
+                className="w-full bg-slate-900 border border-white/10 rounded-xl py-3 px-4 text-sm"
               />
             </div>
+
+            {/* BUTTON */}
             <button
               type="submit"
               disabled={shortening}
-              className="gradient-primary text-white font-semibold px-8 py-4 rounded-xl hover:shadow-lg hover:shadow-accentBlue/25 transition-smooth flex items-center justify-center space-x-2 shrink-0 cursor-pointer disabled:opacity-50"
+              className="gradient-primary text-white font-semibold px-8 py-4 rounded-xl"
             >
-              {shortening ? (
-                <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              ) : (
-                <>
-                  <Plus className="h-5 w-5" />
-                  <span>Shorten URL</span>
-                </>
-              )}
+              Shorten URL
             </button>
+
           </form>
 
           {formError && (
@@ -280,6 +305,11 @@ const Dashboard = () => {
                         <span className="text-[11px] text-slate-500 flex items-center space-x-1">
                           <Calendar className="h-3 w-3" />
                           <span>{new Date(u.createdAt).toLocaleDateString()}</span>
+                          {u.expiryDate && (
+                            <span className="text-xs text-red-400 block mt-1">
+                              Expires: {new Date(u.expiryDate).toLocaleString()}
+                            </span>
+                          )}
                         </span>
 
                         <div className="flex items-center space-x-3">

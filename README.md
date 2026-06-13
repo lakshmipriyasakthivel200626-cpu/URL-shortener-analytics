@@ -89,17 +89,11 @@ npm run dev
 
 ## 🎥 Demo Video
 
-👉 Add your Loom / YouTube link:
-https://your-video-link.com
+👉  YouTube link:
+https://youtu.be/u0qTu6Oeh_s
 
 ---
 
-## 🌐 Live Demo
-
-👉 Add your deployed link:
-https://your-live-demo.com
-
----
 
 ## 🚀 Future Enhancements
 
