@@ -90,20 +90,11 @@ npm run dev
 ## 🎥 Demo Video
 
 👉  YouTube link:
+
 https://youtu.be/u0qTu6Oeh_s
 
----
-
-
-## 🚀 Future Enhancements
-
-* QR Code Generator
-* Public Analytics Page
-* Bulk CSV Upload
-* Geo-location Tracking
 
 ---
 
-## 📢 Hackathon Note
 
 This project is a part of a hackathon run by https://katomaran.com
